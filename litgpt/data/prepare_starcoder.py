@@ -9,6 +9,8 @@ from lightning_utilities.core.imports import RequirementCache
 
 from litgpt.tokenizer import Tokenizer
 from litgpt.utils import CLI, extend_checkpoint_dir
+from litdata.streaming.item_loader import TokensLoader
+
 
 _LITDATA_AVAILABLE = RequirementCache("litdata")
 if _LITDATA_AVAILABLE:
@@ -69,6 +71,7 @@ def prepare(
         fast_dev_run=fast_dev_run,
         num_workers=os.cpu_count(),
         num_downloaders=1,
+        item_loader=TokensLoader(),
     )
 
     start_time = time.time()
